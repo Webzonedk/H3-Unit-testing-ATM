@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    internal class Account
+    public class Account
     {
         public string AccountName { get; set; }
 

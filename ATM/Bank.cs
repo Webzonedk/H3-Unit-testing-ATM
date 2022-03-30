@@ -6,20 +6,17 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    internal class Bank
+    public class Bank
     {
-       
+        public List<Account> Accounts { get; private set; }
 
-        internal static List<Account> GetAccounts()
+        public Bank()
         {
-            List<Account> accounts = new List<Account>()
+            Accounts = new List<Account>()
             {
             new Account("BudgetKonto","Kent",1111222233334444,123456789,1234,1000000),
             new Account("Lønkonto","Kent",5555666677778888,987654321,2345,20000)
             };
-            return accounts;
         }
-
     };
-
 }

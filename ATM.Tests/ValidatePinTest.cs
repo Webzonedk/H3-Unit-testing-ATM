@@ -9,16 +9,20 @@ namespace ATM.Tests
 {
     public class ValidatePinTest
     {
-        [Fact]
-        public void ValidatePin_InputShouldMatchAccountPin()
+        PinValidator pinValidator = new();
+        Bank bank = new();
+
+        [Theory]
+        [InlineData("1234")]
+        public void ValidatePin_InputShouldMatchAccountPin(string input)
         {
             //Arrange
+            //Account expected = null;
+            Account expected = new Account("BudgetKonto", "Kent", 1111222233334444, 123456789, 1234, 1000000);
 
-
-            bool expected = true;
             //Act
-            bool actual = PinValidator.ValidatePin("1234");
-
+            Account actual = pinValidator.ValidatePin(input);
+         
             //int enteredPin = 1379;
             //int cardPin = 1379;
             //bool actual = (enteredPin == cardPin);
@@ -33,11 +37,13 @@ namespace ATM.Tests
         public void ValidatePin_InputShouldNotMatchAccountPin()
         {
             //Arrange
+            Account expected = null;
+            //Account expected = new Account("BudgetKonto", "Kent", 1111222233334444, 123456789, 1234, 1000000);
 
 
-            bool expected = false;
+
             //Act
-            bool actual = PinValidator.ValidatePin("-5698");
+            Account actual = pinValidator.ValidatePin("-5698");
 
             //int enteredPin = 1379;
             //int cardPin = 1379;

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ATM.Tests
 {
-    internal class CheckSaldoTest
+    public class CheckSaldoTest
     {
     }
 }

@@ -7,23 +7,23 @@ using ATM;
 
 namespace ATM
 {
-    public static class PinValidator
+    public class PinValidator
     {
-        private static List<Account> _accounts = Bank.GetAccounts();
+        private readonly Bank _Accounts = new();
+
         /// <summary>
         /// Method to validate the pin code
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="cardPin"></param>
         /// <returns>true or false</returns>
-        public static bool ValidatePin(string value)
+        public Account? ValidatePin(string? value)
         {
             try
             {
                 bool tryParseResult = int.TryParse(value, out int input);
                 if (tryParseResult)
                 {
-                    var result = _accounts.Where(x => (x.PinCode == input));
+                    var result = _Accounts.Accounts.Where(x => (x.PinCode == input));
 
                     if (result != null)
                     {
@@ -32,27 +32,23 @@ namespace ATM
                             int pinCode = account.PinCode;
                             if (input == pinCode)
                             {
-                                return true;
+                                return account;
                             };
                         };
                     }
-                    else
-                    {
-                        return false;
-                    };
                 }
                 else
                 {
-                    return false;
+                    return null;
                 };
             }
             catch (Exception)
             {
                 Console.WriteLine("Hov. Noget gik galt med valideringen af din pinkode");
-                Console.WriteLine("Indtast venligst igen at indtaste den korekte pinkode.");
-                return false;
+                Console.WriteLine("Indtast venligst den korekte pinkode.");
+                return null;
             }
-            return false;
+            return null;
         }
     }
 }

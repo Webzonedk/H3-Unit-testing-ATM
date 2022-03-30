@@ -6,21 +6,56 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    internal class AtmMachine
+    public class AtmMachine
     {
-        public void GetAccount()
+        public long? AccountNumberLoggedIn { get; set; }
+        public Bank bank = new();
+
+        public bool Login(string? input)
+        {
+            PinValidator validator = new();
+            AccountNumberLoggedIn = validator.ValidatePin(input).AccountNumber;
+            return true;
+        }
+
+        public Account? GetAccount()
+        {
+            try
+            {
+                if (AccountNumberLoggedIn != null)
+                {
+                    var result = bank.Accounts.Where(x => (x.AccountNumber == AccountNumberLoggedIn));
+                    foreach (var item in result)
+                    {
+                        return item;
+                    }
+                }
+                else
+                {
+                    return null;
+                };
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Hov. Noget gik galt med valideringen af din pinkode");
+                Console.WriteLine("Indtast venligst den korekte pinkode.");
+            }
+            return null;
+        }
+
+        public void ShowSaldo()
         {
 
         }
 
-
-        public void withdraw()
+        public void Deposit(string amount)
         {
 
         }
 
-        public void withdraw(int amount)
+        public void Withdraw(string amount)
         {
         }
+
     }
 }
