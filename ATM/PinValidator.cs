@@ -20,7 +20,7 @@ namespace ATM
 
             try
             {
-
+                pinCode = Bank.Accounts
                 if (value == pinCode)
                 {
                     return true;
