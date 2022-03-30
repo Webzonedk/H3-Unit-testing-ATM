@@ -8,8 +8,9 @@ namespace ATM
 {
     internal class AtmMachine
     {
-        public void deposit() {
-        
+        public void GetAccount()
+        {
+
         }
 
 
@@ -18,5 +19,8 @@ namespace ATM
 
         }
 
+        public void withdraw(int amount)
+        {
+        }
     }
 }

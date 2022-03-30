@@ -17,7 +17,7 @@ namespace ATM.Tests
 
             bool expected = true;
             //Act
-            bool actual = PinValidator.ValidatePin(1593, 1593);
+            bool actual = PinValidator.ValidatePin("1234");
 
             //int enteredPin = 1379;
             //int cardPin = 1379;
@@ -37,7 +37,7 @@ namespace ATM.Tests
 
             bool expected = false;
             //Act
-            bool actual = PinValidator.ValidatePin(1593, 1593);
+            bool actual = PinValidator.ValidatePin("-5698");
 
             //int enteredPin = 1379;
             //int cardPin = 1379;
