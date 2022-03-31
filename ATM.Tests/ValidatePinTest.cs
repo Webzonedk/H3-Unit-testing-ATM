@@ -13,6 +13,8 @@ namespace ATM.Tests
         PinValidator pinValidator = new();
         Bank bank = new();
 
+
+
         [Theory]
         [InlineData("1234")]
         public void ValidatePin_InputShouldMatchAccountPin(string input)
@@ -23,16 +25,15 @@ namespace ATM.Tests
 
             //Act
             string actual = JsonSerializer.Serialize(pinValidator.ValidatePin(input));
-         
             //int enteredPin = 1379;
             //int cardPin = 1379;
             //bool actual = (enteredPin == cardPin);
 
-             
-
             //Assert
             Assert.Equal(expected, actual);
         }
+
+
 
         [Fact]
         public void ValidatePin_InputShouldNotMatchAccountPin()
@@ -41,16 +42,11 @@ namespace ATM.Tests
             Account? expected = null;
             //Account expected = new Account("BudgetKonto", "Kent", 1111222233334444, 123456789, 1234, 1000000);
 
-
-
             //Act
             Account? actual = pinValidator.ValidatePin("-5698");
-
             //int enteredPin = 1379;
             //int cardPin = 1379;
             //bool actual = (enteredPin == cardPin);
-
-
 
             //Assert
             Assert.Equal(expected, actual);

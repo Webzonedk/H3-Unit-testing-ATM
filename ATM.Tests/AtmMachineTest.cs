@@ -32,22 +32,33 @@ namespace ATM.Tests
         }
 
 
+
         [Theory]
         [InlineData(123456788)]
         public void GetAccount_SupposedToNotRethrieveASingleAccount(long account)
         {
             //Arrange
-
             string expected = JsonSerializer.Serialize(bank.Accounts[0]);
             //Act
             string? actual = JsonSerializer.Serialize(atmMachine.GetAccount(account));
 
-
-
-
-
             //Assert
             Assert.NotEqual(expected, actual);
+        }
+
+
+        [Theory]
+        [InlineData(100, 200, 200)]
+        public void Withdraw_SupposedToWithdrawIfInputIsLowerThanSaldoAndIsRoudableWith100(int withdraw, int saldo, double expected)
+        {
+            //Arrange
+
+
+            //Act
+            double actual = saldo-withdraw;
+
+            //Assert
+            Assert.Equal(expected, actual);
         }
 
     }
