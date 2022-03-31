@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using System.Text.Json;
 
 namespace ATM.Tests
 {
@@ -18,10 +19,10 @@ namespace ATM.Tests
         {
             //Arrange
             //Account expected = null;
-            Account expected = new Account("BudgetKonto", "Kent", 1111222233334444, 123456789, 1234, 1000000);
+            string expected = JsonSerializer.Serialize(bank.Accounts[0]);
 
             //Act
-            Account actual = pinValidator.ValidatePin(input);
+            string actual = JsonSerializer.Serialize(pinValidator.ValidatePin(input));
          
             //int enteredPin = 1379;
             //int cardPin = 1379;
@@ -37,13 +38,13 @@ namespace ATM.Tests
         public void ValidatePin_InputShouldNotMatchAccountPin()
         {
             //Arrange
-            Account expected = null;
+            Account? expected = null;
             //Account expected = new Account("BudgetKonto", "Kent", 1111222233334444, 123456789, 1234, 1000000);
 
 
 
             //Act
-            Account actual = pinValidator.ValidatePin("-5698");
+            Account? actual = pinValidator.ValidatePin("-5698");
 
             //int enteredPin = 1379;
             //int cardPin = 1379;

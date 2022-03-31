@@ -18,7 +18,7 @@ namespace ATM
             return true;
         }
 
-        public Account? GetAccount()
+        public Account? GetAccount(long? AccountNumberLoggedIn)
         {
             try
             {

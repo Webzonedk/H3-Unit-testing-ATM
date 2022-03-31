@@ -1,7 +1,7 @@
 ﻿
 using ATM;
 bool exitATM = false;
-AtmMachine atmMachine = new AtmMachine();
+AtmMachine? atmMachine = new AtmMachine();
 while (true)
 {
     Console.Clear();
@@ -21,13 +21,16 @@ while (true)
         Console.Clear();
         Console.WriteLine();
         Console.Write("Du er nu logget ind som: ");
-        Console.WriteLine(atmMachine.GetAccount().Owner);
+        Console.WriteLine(atmMachine.GetAccount(atmMachine.AccountNumberLoggedIn).Owner);
         Console.Write("Konto navn: ");
-        Console.WriteLine(atmMachine.GetAccount().AccountName);
+        Console.WriteLine(atmMachine.GetAccount(atmMachine.AccountNumberLoggedIn).AccountName);
         Console.Write("Konto nummer: ");
-        Console.WriteLine(atmMachine.GetAccount().AccountNumber);
+        Console.WriteLine(atmMachine.GetAccount(atmMachine.AccountNumberLoggedIn).AccountNumber);
         Console.Write("Saldo: ");
-        Console.WriteLine(atmMachine.GetAccount().Saldo);
+        Console.WriteLine(atmMachine.GetAccount(atmMachine.AccountNumberLoggedIn).Saldo);
+        Console.WriteLine();
+
+        Console.WriteLine("Hvor meget ønsker du at hæve (Tallet skal være deleligt med 100)");
         Console.ReadKey();
     }
     else
